@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/19 22:14:31 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/19 23:02:03 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,18 @@ int	flag_check(t_form *flag, char **argv)
 	}
 	return (i);
 }
-void	list_apply(t_list **lst, t_list *new)
+void	list_apply(t_stack **lst, long num)
 {
 	t_list	*tmp;
 
-	if (lst == NULL || new == NULL)
+	if (lst == NULL)
 		return ;
 	if (*lst == NULL)
 	{
 		*lst = new;
 		return ;
 	}
+	*lst->size = *lst->size + 1;
 	tmp = *lst;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
