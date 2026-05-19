@@ -6,7 +6,7 @@
 /*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 23:00:51 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/19 23:12:35 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/19 23:30:49 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,4 @@ t_node	node_init(long value)
 	res->prev= NULL;
 	return (res);
 }
+
