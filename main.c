@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/19 23:02:03 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/20 19:29:50 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,39 +70,22 @@ int	flag_check(t_form *flag, char **argv)
 	while (argv[i][0] == '-')
 	{
 		if (ps_strncmp(argv[i], "--simple", 8) == 0)
-			return (1);
+			flag->simple = 1;
 		else if (ps_strncmp(argv[i], "--medium", 8) == 0)
-			return (1);
+			flag->medium = 1;
 		else if (ps_strncmp(argv[i], "--complex", 9) == 0)
-			return (1);
+			flag->complex = 1;
 		else if (ps_strncmp(argv[i], "--adaptive", 10) == 0)
-			return (1);
+			flag->adaptive = 1;
 		else if (ps_strncmp(argv[i], "--bench", 7) == 0)
-			return (1);
+			flag->bench = 1;
 		else
 			return (-1);
 		i++;
 	}
 	return (i);
 }
-void	list_apply(t_stack **lst, long num)
-{
-	t_list	*tmp;
 
-	if (lst == NULL)
-		return ;
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	*lst->size = *lst->size + 1;
-	tmp = *lst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-	return ;
-}
 int	parse_num(t_stack *heada, char **argv, int argc, int pos)
 {
 	char	**tmp;
