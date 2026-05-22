@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/23 00:51:39 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/23 01:20:03 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ long	ps_atol(const char *nptr)
 	}
 	if (*nptr != '\0')
 		return (LONG_MAX);
-	if ((nb > INT_MAX) || (sign * nb < INT_MIN))
+	nb = sign * nb;
+	if ((nb < INT_MIN) || (nb > INT_MAX))
 		return (LONG_MAX);
-	return ((sign * nb));
+	return (nb);
 }
 
 int	ps_strncmp(char *s1, char *s2, int n)
