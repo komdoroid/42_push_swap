@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/23 00:14:39 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/23 00:51:39 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ps_strncmp(char *s1, char *s2, int n)
 	int	i;
 
 	i = 0;
-	while (i < n)
+	while (i <= n)
 	{
 		if ((unsigned char)s1[i] != (unsigned char)s2[i])
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
@@ -73,15 +73,15 @@ int	flag_check(t_form *flag, char **argv, int argc)
 	flag_init(flag);
 	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
 	{
-		if (ps_strncmp(argv[i], "--simple", 9) == 0)
+		if (ps_strncmp(argv[i], "--simple", 8) == 0)
 			flag->simple = 1;
-		else if (ps_strncmp(argv[i], "--medium", 9) == 0)
+		else if (ps_strncmp(argv[i], "--medium", 8) == 0)
 			flag->medium = 1;
-		else if (ps_strncmp(argv[i], "--complex", 10) == 0)
+		else if (ps_strncmp(argv[i], "--complex", 9) == 0)
 			flag->complex = 1;
-		else if (ps_strncmp(argv[i], "--adaptive", 11) == 0)
+		else if (ps_strncmp(argv[i], "--adaptive", 10) == 0)
 			flag->adaptive = 1;
-		else if (ps_strncmp(argv[i], "--bench", 8) == 0)
+		else if (ps_strncmp(argv[i], "--bench", 7) == 0)
 			flag->bench = 1;
 		else
 			return (-1);
@@ -128,6 +128,8 @@ int	check_duplicates(t_stack *head)
 	int		i;
 	int		rest;
 
+	if (head->top == NULL || head->size <= 1)
+		return (1);
 	current = head->top;
 	runner = head->top->next;
 	rest = head->size;
@@ -217,7 +219,7 @@ int	main(int argc, char **argv)
 	if (parse(&heada, &flag, argc, argv) == -1)
 	{
 		write_error();
-		return (1);
+		return (-1);
 	}
 	print_stack(&heada);
 	ft_lstclear(&heada);
