@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/20 19:29:50 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/23 00:14:39 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ long	ps_atol(const char *nptr)
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		if (sign == 1 && nb > (INT_MAX - (*nptr - '0')) / 10)
-			return (INT_MAX);
+			return (LONG_MAX);
 		if (sign == -1 && nb > (INT_MAX - (*nptr - '0') + 1) / 10)
-			return (INT_MAX);
+			return (LONG_MAX);
 		nb = nb * 10 + *nptr++ - '0';
 	}
-	if ((nb > INT_MAX) && (nb < INT_MIN))
+	if (*nptr != '\0')
+		return (LONG_MAX);
+	if ((nb > INT_MAX) || (sign * nb < INT_MIN))
 		return (LONG_MAX);
 	return ((sign * nb));
 }
@@ -50,7 +52,7 @@ int	ps_strncmp(char *s1, char *s2, int n)
 			return (0);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 void	flag_init(t_form *flag)
@@ -63,28 +65,30 @@ void	flag_init(t_form *flag)
 	return ;
 }
 
-int	flag_check(t_form *flag, char **argv)
+int	flag_check(t_form *flag, char **argv, int argc)
 {
 	int	i;
 
 	i = 1;
 	flag_init(flag);
-	while (argv[i][0] == '-' && argv[i][1] == '-')
+	while (i < argc && argv[i][0] == '-' && argv[i][1] == '-')
 	{
-		if (ps_strncmp(argv[i], "--simple", 8) == 0)
+		if (ps_strncmp(argv[i], "--simple", 9) == 0)
 			flag->simple = 1;
-		else if (ps_strncmp(argv[i], "--medium", 8) == 0)
+		else if (ps_strncmp(argv[i], "--medium", 9) == 0)
 			flag->medium = 1;
-		else if (ps_strncmp(argv[i], "--complex", 9) == 0)
+		else if (ps_strncmp(argv[i], "--complex", 10) == 0)
 			flag->complex = 1;
-		else if (ps_strncmp(argv[i], "--adaptive", 10) == 0)
+		else if (ps_strncmp(argv[i], "--adaptive", 11) == 0)
 			flag->adaptive = 1;
-		else if (ps_strncmp(argv[i], "--bench", 7) == 0)
+		else if (ps_strncmp(argv[i], "--bench", 8) == 0)
 			flag->bench = 1;
 		else
 			return (-1);
 		i++;
 	}
+	if (flag->simple + flag->medium + flag->complex + flag->adaptive > 1)
+		return (-1);
 	return (i);
 }
 
@@ -95,7 +99,6 @@ int	parse_num(t_stack *head, char **argv, int argc, int pos)
 	long	num;
 
 	i = 0;
-	// splitしてatoiしてlistに詰めていくまでを、pos<argcまでwhile
 	while (pos < argc)
 	{
 		tmp = ps_split(argv[pos], ' ');
@@ -105,14 +108,42 @@ int	parse_num(t_stack *head, char **argv, int argc, int pos)
 		while (tmp[i])
 		{
 			num = ps_atol(tmp[i]);
-			if (num == LONG_MAX)
+			if (num == LONG_MAX || (list_apply(head, num) == -1))
+			{
+				free_all(tmp);
 				return (-1);
-			if (list_apply(head, num) == -1)
-				return (-1);
+			}
 			i++;
 		}
-		free(tmp);
+		free_all(tmp);
 		pos++;
+	}
+	return (1);
+}
+
+int	check_duplicates(t_stack *head)
+{
+	t_node	*current;
+	t_node	*runner;
+	int		i;
+	int		rest;
+
+	current = head->top;
+	runner = head->top->next;
+	rest = head->size;
+	while (rest - 1 > 0)
+	{
+		i = 0;
+		while (i < rest - 1)
+		{
+			if (current->value == runner->value)
+				return (-1);
+			runner = runner->next;
+			i++;
+		}
+		current = current->next;
+		runner = current->next;
+		rest--;
 	}
 	return (1);
 }
@@ -122,26 +153,29 @@ int	parse(t_stack *head, t_form *flag, int argc, char **argv)
 	int	pos;
 
 	stack_init(head);
-	if (argc <= 1)
-		return (-1);
-	pos = flag_check(flag, argv);
+	pos = flag_check(flag, argv, argc);
 	if (pos == -1)
 		return (-1);
 	if ((parse_num(head, argv, argc, pos)) == -1)
 		return (-1);
+	if (check_duplicates(head) == -1)
+	{
+		ft_lstclear(head);
+		return (-1);
+	}
 	return (1);
 }
 
 void	write_error(void)
 {
-	write(1, "Error", 5);
+	write(2, "Error\n", 6);
 	return ;
 }
 
-void	print_stack(t_stack *head)
+void	print_stack(t_stack *head) // mainのテスト用関数
 {
-	t_node	*current;
-	int		i;
+	t_node *current;
+	int i;
 
 	if (head == NULL || head->top == NULL)
 	{
@@ -157,6 +191,20 @@ void	print_stack(t_stack *head)
 		i++;
 	}
 	printf("size = %d\n", head->size);
+
+	// デバッグ用
+	current = head->top;
+	i = 0;
+	while (i < head->size)
+	{
+		printf("node %d: addr=%p, next=%p, prev=%p\n", i, (void *)current,
+			(void *)current->next, (void *)current->prev);
+		current = current->next;
+		i++;
+	}
+
+	printf("DEBUG: freeing addr=%p (i=%d, size=%d)\n", (void *)current, i,
+		head->size);
 }
 
 int	main(int argc, char **argv)
@@ -164,6 +212,8 @@ int	main(int argc, char **argv)
 	t_stack	heada;
 	t_form	flag;
 
+	if (argc <= 1)
+		return (0);
 	if (parse(&heada, &flag, argc, argv) == -1)
 	{
 		write_error();

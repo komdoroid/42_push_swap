@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 23:00:51 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/20 19:47:42 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/23 00:11:12 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@ int	list_apply(t_stack *head, long num)
 {
 	t_node	*new;
 
-	new = node_new(head, num);
+	new = node_new(num);
 	if (new == NULL)
+	{
+		ft_lstclear(head);
 		return (-1);
+	}
 	if (head->top == NULL)
 		head->top = new;
 	if (ps_lstadd_back(head, new) == -1)
+	{
+		ft_lstclear(head);
 		return (-1);
+	}
+	head->size = head->size + 1;
 	return (1);
 }
 
@@ -38,7 +45,7 @@ int	ps_lstadd_back(t_stack *head, t_node *new)
 
 	if (head == NULL || new == NULL)
 		return (-1);
-	if (head->size == 1)
+	if (head->size == 0)
 	{
 		new->next = new;
 		new->prev = new;
@@ -58,11 +65,11 @@ void	ft_lstclear(t_stack *head)
 	t_node	*next_node;
 	int		i;
 
-	i = 1;
-	if (head == NULL)
+	i = 0;
+	if (head == NULL || head->top == NULL)
 		return ;
 	current = head->top;
-	while (i <= head->size)
+	while (i < head->size)
 	{
 		next_node = current->next;
 		free(current);
@@ -74,7 +81,7 @@ void	ft_lstclear(t_stack *head)
 	return ;
 }
 
-t_node	*node_new(t_stack *head, long value)
+t_node	*node_new(long value)
 {
 	t_node	*res;
 
@@ -84,6 +91,5 @@ t_node	*node_new(t_stack *head, long value)
 	res->value = value;
 	res->next = NULL;
 	res->prev = NULL;
-	head->size = head->size + 1;
 	return (res);
 }

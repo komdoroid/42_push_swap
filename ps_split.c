@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 22:42:47 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/19 20:15:56 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/22 23:59:49 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ char	*fill_words(char const *s, int len)
 	return (row);
 }
 
-void	free_all(char **res, int row_num)
+void	free_all(char **res)
 {
 	int	i;
 
 	i = 0;
-	while (i < row_num)
+	while (res[i])
 	{
 		free(res[i]);
 		i++;
@@ -80,7 +80,7 @@ char	**make_grid(char **res, char const *s, char c)
 			res[i] = fill_words(start, s - start);
 			if (res[i] == NULL)
 			{
-				free_all(res, i);
+				free_all(res);
 				return (NULL);
 			}
 			i++;

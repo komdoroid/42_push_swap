@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/20 19:28:36 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/22 23:59:37 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ typedef struct s_form
 
 char				**ps_split(char const *s, char c);
 char				**make_grid(char **res, char const *s, char c);
-void				free_all(char **res, int row_num);
+void				free_all(char **res);
 char				*fill_words(char const *s, int len);
 int					word_count(char const *s, char c);
 int					list_apply(t_stack *head, long num);
 void				stack_init(t_stack *stack);
 int					ps_lstadd_back(t_stack *head, t_node *new);
 void				ft_lstclear(t_stack *head);
-t_node				*node_new(t_stack *head, long value);
+t_node				*node_new(long value);
