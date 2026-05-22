@@ -89,7 +89,7 @@ char	**make_grid(char **res, char const *s, char c)
 	return (res);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ps_split(char const *s, char c)
 {
 	char	**res;
 	int		word_num;

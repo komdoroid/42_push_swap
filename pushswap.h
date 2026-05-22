@@ -46,3 +46,8 @@ char				**make_grid(char **res, char const *s, char c);
 void				free_all(char **res, int row_num);
 char				*fill_words(char const *s, int len);
 int					word_count(char const *s, char c);
+int					list_apply(t_stack *head, long num);
+void				stack_init(t_stack *stack);
+int					ps_lstadd_back(t_stack *head, t_node *new);
+void				ft_lstclear(t_stack *head);
+t_node				*node_new(t_stack *head, long value);

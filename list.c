@@ -12,26 +12,18 @@
 
 #include "pushswap.h"
 
-void	list_apply(t_stack **head, long num)
+int	list_apply(t_stack *head, long num)
 {
-	t_node	*tmp;
+	t_node	*new;
 
-	tmp = node_init(num);
-	if (tmp == NULL)
-	{
-		return ;
-	}
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return ;
-	}
-	*lst->size = *lst->size + 1;
-	tmp = *lst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-	return ;
+	new = node_new(head, num);
+	if (new == NULL)
+		return (-1);
+	if (head->top == NULL)
+		head->top = new;
+	if (ps_lstadd_back(head, new) == -1)
+		return (-1);
+	return (1);
 }
 
 void	stack_init(t_stack *stack)
@@ -39,43 +31,50 @@ void	stack_init(t_stack *stack)
 	stack->size = 0;
 	stack->top = NULL;
 }
-void	ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*tmp;
 
-	if (lst == NULL || new == NULL)
-		return ;
-	if (*lst == NULL)
+int	ps_lstadd_back(t_stack *head, t_node *new)
+{
+	t_node	*last;
+
+	if (head == NULL || new == NULL)
+		return (-1);
+	if (head->size == 1)
 	{
-		*lst = new;
-		return ;
+		new->next = new;
+		new->prev = new;
+		return (1);
 	}
-	tmp = *lst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-	return ;
+	last = head->top->prev;
+	last->next = new;
+	new->next = head->top;
+	new->prev = last;
+	head->top->prev = new;
+	return (1);
 }
 
-void	ft_lstclear(t_stack *lst, )
+void	ft_lstclear(t_stack *head)
 {
 	t_node	*current;
 	t_node	*next_node;
+	int		i;
 
-	if (lst == NULL)
+	i = 1;
+	if (head == NULL)
 		return ;
-	current = (*lst)->top;
-	while (*lst != NULL)
+	current = head->top;
+	while (i <= head->size)
 	{
 		next_node = current->next;
 		free(current);
 		current = next_node;
+		i++;
 	}
-	lst = NULL;
+	head->top = NULL;
+	head->size = 0;
 	return ;
 }
 
-t_node	*node_init(long value)
+t_node	*node_new(t_stack *head, long value)
 {
 	t_node	*res;
 
@@ -85,5 +84,6 @@ t_node	*node_init(long value)
 	res->value = value;
 	res->next = NULL;
 	res->prev = NULL;
+	head->size = head->size + 1;
 	return (res);
 }

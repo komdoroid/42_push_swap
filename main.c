@@ -22,6 +22,8 @@ long	ps_atol(const char *nptr)
 	if (*nptr == '+' || *nptr == '-')
 		if (*nptr++ == '-')
 			sign = -1;
+	if (!((*nptr >= '0' && *nptr <= '9')))
+		return (LONG_MAX);
 	while (*nptr >= '0' && *nptr <= '9')
 	{
 		if (sign == 1 && nb > (INT_MAX - (*nptr - '0')) / 10)
@@ -65,9 +67,9 @@ int	flag_check(t_form *flag, char **argv)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	flag_init(flag);
-	while (argv[i][0] == '-')
+	while (argv[i][0] == '-' && argv[i][1] == '-')
 	{
 		if (ps_strncmp(argv[i], "--simple", 8) == 0)
 			flag->simple = 1;
@@ -86,7 +88,7 @@ int	flag_check(t_form *flag, char **argv)
 	return (i);
 }
 
-int	parse_num(t_stack *heada, char **argv, int argc, int pos)
+int	parse_num(t_stack *head, char **argv, int argc, int pos)
 {
 	char	**tmp;
 	int		i;
@@ -105,7 +107,8 @@ int	parse_num(t_stack *heada, char **argv, int argc, int pos)
 			num = ps_atol(tmp[i]);
 			if (num == LONG_MAX)
 				return (-1);
-			list_apply(&heada, num);
+			if (list_apply(head, num) == -1)
+				return (-1);
 			i++;
 		}
 		free(tmp);
@@ -114,17 +117,17 @@ int	parse_num(t_stack *heada, char **argv, int argc, int pos)
 	return (1);
 }
 
-int	parse(t_stack *heada, t_form *flag, int argc, char **argv)
+int	parse(t_stack *head, t_form *flag, int argc, char **argv)
 {
-	int		pos;
-	char	**num;
+	int	pos;
 
+	stack_init(head);
 	if (argc <= 1)
 		return (-1);
 	pos = flag_check(flag, argv);
 	if (pos == -1)
 		return (-1);
-	if ((parse_num(heada, argv, argc, pos)) == -1)
+	if ((parse_num(head, argv, argc, pos)) == -1)
 		return (-1);
 	return (1);
 }
@@ -135,12 +138,49 @@ void	write_error(void)
 	return ;
 }
 
+void	print_stack(t_stack *head)
+{
+	t_node	*current;
+	int		i;
+
+	if (head == NULL || head->top == NULL)
+	{
+		printf("empty stack\n");
+		return ;
+	}
+	current = head->top;
+	i = 0;
+	while (i < head->size)
+	{
+		printf("[%d] value = %ld\n", i, current->value);
+		current = current->next;
+		i++;
+	}
+	printf("size = %d\n", head->size);
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	heada;
 	t_form	flag;
 
-	// t_stack	headb;
 	if (parse(&heada, &flag, argc, argv) == -1)
+	{
 		write_error();
+		return (1);
+	}
+	print_stack(&heada);
+	ft_lstclear(&heada);
+	return (0);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	t_stack	heada;
+// 	t_form	flag;
+
+// 	// t_stack	headb;
+// 	if (parse(&heada, &flag, argc, argv) == -1)
+// 		write_error();
+// 	return(0);
+// }
