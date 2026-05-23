@@ -1,14 +1,44 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    disorder.c                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: kkomurat <kkomurat@student.42tokyo.jp>     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/05/21 21:30:56 by kkomurat          #+#    #+#              #
-#    Updated: 2026/05/21 21:33:40 by kkomurat         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   disorder.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/05/23 13:08:21 by kkomurat          #+#    #+#             */
+/*   Updated: 2026/05/23 13:08:23 by kkomurat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "pushswap.h"
+
+long	calc_mistakes(t_stack *head, int size)
+{
+	int	i;
+	int	j;
+	t_node	*left;
+	t_node	*right;
+	long	mistakes;
+
+	left = head->top;
+	mistakes = 0;
+	i = 0;
+	while (i < size - 1)
+	{
+		right = left->next;
+		j = i + 1;
+		while (j < size)
+		{
+			if (left->value > right-> value)
+				mistakes++;
+			right = right->next;
+			j++;
+		}
+		left = left->next;
+		i++;
+	}
+	return (mistakes);
+}
 
 double	disorder(t_stack *head)
 {
@@ -24,31 +54,3 @@ double	disorder(t_stack *head)
 	return ((double)mistakes / total_pairs);
 }
 
-long	calc_mistakes(t_stack *head, int size)
-{
-	int	i;
-	int	j;
-	t_node	*left;
-	t_node	*right;
-	long	mistakes;
-
-	left = head->top;
-	right = left->next;
-	mistakes = 0;
-	i = 0;
-	while (i < size - 1)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (left->value > right-> value)
-				mistakes++;
-			right = right->next;
-			j++;
-		}
-		left = left->next;
-		right = left->next;
-		i++;
-	}
-	return (mistakes);
-}
