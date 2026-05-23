@@ -6,9 +6,11 @@
 /*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:39:58 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 12:41:03 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/23 12:56:37 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pushswap.h"
 
 void	swap(t_stack *head)
 {
