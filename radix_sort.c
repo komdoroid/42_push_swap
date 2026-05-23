@@ -6,7 +6,7 @@
 /*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:57:53 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 15:12:45 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/23 16:14:27 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	radix_sort(t_stack *a, t_stack *b)
 		i = 0;
 		while (i < size)
 		{
-			if ((a->top->value >> bit) & 0b01)
+			if ((a->top->index >> bit) & 1)
 				rotate_a(a);
 			else 
 				push_b(a, b);
