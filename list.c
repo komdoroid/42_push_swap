@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 23:00:51 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 00:59:13 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/23 16:52:23 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_node	*node_new(long value)
 	if (res == NULL)
 		return (NULL);
 	res->value = value;
+	res->index = -1;
 	res->next = NULL;
 	res->prev = NULL;
 	return (res);

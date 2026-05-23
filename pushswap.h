@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/22 23:59:37 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/23 16:49:25 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct s_node
 {
 	long			value;
+	int				index;
 	struct s_node	*next;
 	struct s_node	*prev;
 
