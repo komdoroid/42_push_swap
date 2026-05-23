@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   radix_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:57:53 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 16:14:27 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/23 21:10:47 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	radix_sort(t_stack *a, t_stack *b)
 		{
 			if ((a->top->index >> bit) & 1)
 				rotate_a(a);
-			else 
+			else
 				push_b(a, b);
 			i++;
 		}

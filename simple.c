@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command_reverse_rotate.c                           :+:      :+:    :+:   */
+/*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/23 12:46:16 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 22:23:47 by riwatana         ###   ########.fr       */
+/*   Created: 2026/05/23 21:29:02 by riwatana          #+#    #+#             */
+/*   Updated: 2026/05/23 23:36:01 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	reverse_rotate(t_stack *head)
+void	simple_sort(t_stack *a, t_stack *b)
 {
-	if (!head || !head->top || head->size < 2)
+	int	i;
+
+	if (!a || !b || a->size < 2)
 		return ;
-	head->top = head->top->prev;
-}
-
-void	reverse_rotate_a(t_stack *a)
-{
-	reverse_rotate(a);
-}
-
-void	reverse_rotate_b(t_stack *b)
-{
-	reverse_rotate(b);
-}
-
-void	rverse_rotate_both(t_stack *a, t_stack *b)
-{
-	reverse_rotate_a(a);
-	reverse_rotate_a(b);
+	i = 0;
+	while (a->size > 0)
+	{
+		while (a->top->index != i)
+			rotate_a(a);
+		push_b(b, a);
+		i++;
+	}
+	while (b->size > 0)
+	{
+		rotate_b(b);
+		push_a(a, b);
+	}
 }

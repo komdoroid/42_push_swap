@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/23 16:49:25 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/23 23:31:07 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,29 @@ void				stack_init(t_stack *stack);
 int					ps_lstadd_back(t_stack *head, t_node *new);
 void				ft_lstclear(t_stack *head);
 t_node				*node_new(long value);
+int					ps_strncmp(char *s1, char *s2, int n);
+void				flag_init(t_form *flag);
+int					flag_check(t_form *flag, char **argv, int argc);
+void				write_error(void);
+long				ps_atol(const char *nptr);
+int					parse_num(t_stack *head, char **argv, int argc, int pos);
+int					check_duplicates(t_stack *head);
+int					parse(t_stack *head, t_form *flag, int argc, char **argv);
+long				calc_mistakes(t_stack *head, int size);
+double				disorder(t_stack *head);
+void				simple_sort(t_stack *a, t_stack *b);
+void				push(t_stack *to, t_stack *from);
+void				push_a(t_stack *a, t_stack *b);
+void				push_b(t_stack *b, t_stack *a);
+void				reverse_rotate(t_stack *head);
+void				reverse_rotate_a(t_stack *a);
+void				reverse_rotate_b(t_stack *b);
+void				rverse_rotate_both(t_stack *a, t_stack *b);
+void				rotate(t_stack *head);
+void				rotate_a(t_stack *a);
+void				rotate_b(t_stack *b);
+void				rotate_both(t_stack *a, t_stack *b);
+void				swap(t_stack *head);
+void				swap_a(t_stack *head);
+void				swap_b(t_stack *head);
+void				swap_both(t_stack *a, t_stack *b);
