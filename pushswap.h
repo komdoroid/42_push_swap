@@ -102,9 +102,12 @@ void				rotate_b(t_stack *b, t_command *command, t_form *flag,
 void				rotate_both(t_stack *a, t_stack *b, t_command *command,
 						t_form *flag);
 void				swap(t_stack *head);
-void				swap_a(t_stack *head, t_command *command, int output);
-void				swap_b(t_stack *head, t_command *command, int output);
-void				swap_both(t_stack *a, t_stack *b, t_command *command);
+void				swap_a(t_stack *head, t_command *command, t_form *flag,
+						int output);
+void				swap_b(t_stack *head, t_command *command, t_form *flag,
+						int output);
+void				swap_both(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
 void				assign_index(t_stack *a);
 int					calc_index(t_stack *a, t_node *current);
 

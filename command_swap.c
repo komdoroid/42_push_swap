@@ -50,7 +50,7 @@ void	swap_b(t_stack *head, t_command *command, t_form *flag, int output)
 
 void	swap_both(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
-	swap_a(a, command, 0);
-	swap_b(b, command, 0);
+	swap_a(a, command,flag, 0);
+	swap_b(b, command,flag, 0);
 	output_command(flag, command, "ss\n");
 }
