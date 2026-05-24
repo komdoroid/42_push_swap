@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:41:13 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 12:56:55 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/23 23:30:49 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,19 @@ void	push(t_stack *to, t_stack *from)
 		return ;
 	}
 	node->next = to->top;
-	node->prev = to->prev;
+	node->prev = to->top->prev;
 	to->top->prev->next = node;
+	to->top->prev = node;
 	to->top = node;
 	to->size++;
 }
 
-void	push_a(t_stack *a)
+void	push_a(t_stack *a, t_stack *b)
 {
-	push(a);
+	push(a, b);
 }
 
-void	push_b(t_stack *b)
+void	push_b(t_stack *b, t_stack *a)
 {
-	push(b);
+	push(b, a);
 }

@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 12:31:23 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/24 12:56:56 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,10 @@ int	parse(t_stack *head, t_form *flag, int argc, char **argv)
 	return (1);
 }
 
-
 void	print_stack(t_stack *head) // mainのテスト用関数
 {
 	t_node *current;
+
 	int i;
 
 	if (head == NULL || head->top == NULL)
@@ -146,23 +146,34 @@ void	print_stack(t_stack *head) // mainのテスト用関数
 		current = current->next;
 		i++;
 	}
-
+	current = head->top;
 	printf("DEBUG: freeing addr=%p (i=%d, size=%d)\n", (void *)current, i,
 		head->size);
+
+	i = 0;
+	while (i < head->size)
+	{
+		printf("node %d: num=%ld\n", i, current->value);
+		current = current->next;
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	heada;
+	t_stack	headb;
 	t_form	flag;
 
 	if (argc <= 1)
 		return (0);
+	stack_init(&headb);
 	if (parse(&heada, &flag, argc, argv) == -1)
 	{
 		write_error();
 		return (-1);
 	}
+	simple_sort(&heada, &headb);
 	print_stack(&heada);
 	ft_lstclear(&heada);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:39:58 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 12:56:37 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/23 23:00:59 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	swap(t_stack *head)
 		return ;
 	prev = head->top->prev;
 	first = head->top;
-
 	second = head->top->next;
 	third = head->top->next->next;
 	prev->next = second;
@@ -37,12 +36,12 @@ void	swap(t_stack *head)
 
 void	swap_a(t_stack *head)
 {
-	swap(*head);
+	swap(head);
 }
 
 void	swap_b(t_stack *head)
 {
-	swap(*head);
+	swap(head);
 }
 
 void	swap_both(t_stack *a, t_stack *b)
