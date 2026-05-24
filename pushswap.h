@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/23 16:49:25 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 12:09:51 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,6 @@ void				stack_init(t_stack *stack);
 int					ps_lstadd_back(t_stack *head, t_node *new);
 void				ft_lstclear(t_stack *head);
 t_node				*node_new(long value);
+int					calc_index(t_stack *a, t_node *current);
+void				assign_index(t_stack *a);
+
