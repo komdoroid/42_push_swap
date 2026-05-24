@@ -6,7 +6,11 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/05/24 22:11:57 by riwatana         ###   ########.fr       */
+=======
+/*   Updated: 2026/05/24 22:26:27 by kkomurat         ###   ########.fr       */
+>>>>>>> chunk_sort
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 typedef struct s_node
 {
@@ -98,6 +103,7 @@ void				swap_b(t_stack *head, t_command *command, int output);
 void				swap_both(t_stack *a, t_stack *b, t_command *command);
 void				assign_index(t_stack *a);
 int					calc_index(t_stack *a, t_node *current);
+<<<<<<< HEAD
 double				disorder(t_stack *head);
 long				calc_mistakes(t_stack *head, int size);
 int					ps_strlen(char *str);
@@ -108,3 +114,10 @@ int					select_strategy(t_stack *a, t_stack *b, t_form *flag);
 void				simple_sort(t_stack *a, t_stack *b, t_command *command);
 void				radix_sort(t_stack *a, t_stack *b, t_command *command);
 int					get_max_bits(int size);
+=======
+int					calc_chunk_size(int n)
+bool				find_pos(t_stack *b, int target)
+void				push_chunks_to_b(t_stack *a, t_stack *b)
+void				sort_chunks_to_a(t_stack *a, t_stack *b)
+void				chunk_sort(t_stack *a, t_stack *b)
+>>>>>>> chunk_sort
