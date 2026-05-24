@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 13:44:41 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:26:27 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 typedef struct s_node
 {
@@ -80,3 +81,8 @@ void				swap_b(t_stack *head);
 void				swap_both(t_stack *a, t_stack *b);
 void				assign_index(t_stack *a);
 int					calc_index(t_stack *a, t_node *current);
+int					calc_chunk_size(int n)
+bool				find_pos(t_stack *b, int target)
+void				push_chunks_to_b(t_stack *a, t_stack *b)
+void				sort_chunks_to_a(t_stack *a, t_stack *b)
+void				chunk_sort(t_stack *a, t_stack *b)
