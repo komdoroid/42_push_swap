@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 16:53:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/23 16:55:08 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:09:49 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	flag_check(t_form *flag, char **argv, int argc)
 	return (i);
 }
 
-void	write_error(void)
+int	write_error(void)
 {
 	write(2, "Error\n", 6);
-	return ;
+	return(-1) ;
 }

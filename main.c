@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 14:03:51 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:11:43 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ long	ps_atol(const char *nptr)
 		return (LONG_MAX);
 	while (*nptr >= '0' && *nptr <= '9')
 	{
-		if (sign == 1 && nb > (INT_MAX - (*nptr - '0')) / 10)
+		if (sign == 1 && nb > ((long)INT_MAX - (*nptr - '0')) / 10)
 			return (LONG_MAX);
-		if (sign == -1 && nb > (INT_MAX - (*nptr - '0') + 1) / 10)
+		if (sign == -1 && nb > ((long)INT_MAX - (*nptr - '0') + 1) / 10)
 			return (LONG_MAX);
 		nb = nb * 10 + *nptr++ - '0';
 	}
@@ -117,7 +117,6 @@ int	parse(t_stack *head, t_form *flag, int argc, char **argv)
 	return (1);
 }
 
-
 void	print_stack(t_stack *head, const char *label)
 {
 	t_node	*current;
@@ -160,35 +159,25 @@ int	is_sorted(t_stack *head)
 	return (1);
 }
 
-int main(void)
+int	main(int argc, char **argv)
 {
-    printf("-1   -> %ld\n", ps_atol("-1"));
-    printf("-12  -> %ld\n", ps_atol("-12"));
-    printf("-101 -> %ld\n", ps_atol("-101"));
-    printf("-201 -> %ld\n", ps_atol("-201"));
-    return (0);
-}
-// int	main(int argc, char **argv)
-// {
-// 	t_stack	heada;
-// 	t_stack	headb;
-// 	t_form	flag;
+	t_stack	heada;
+	t_stack	headb;
+	t_form	flag;
 
-// 	if (argc <= 1)
-// 		return (0);
-// 	stack_init(&headb);
-// 	if (parse(&heada, &flag, argc, argv) == -1)
-// 	{
-// 		write_error();
-// 		return (1);
-// 	}
-// 	print_stack(&heada, "BEFORE sort");
-// 	// simple_sort(&heada, &headb);
-// 	// print_stack(&heada, "AFTER sort");
-// 	// if (is_sorted(&heada))
-// 	// 	printf(">> RESULT: OK (sorted)\n");
-// 	// else
-// 	// 	printf(">> RESULT: KO (not sorted)\n");
-// 	ft_lstclear(&heada);
-// 	return (0);
-// }
+	if (argc <= 1)
+		return (0);
+	stack_init(&headb);
+	if (parse(&heada, &flag, argc, argv) == -1)
+		return (write_error());
+	print_stack(&heada, "BEFORE sort");
+	if (select_strategy(&heada, &headb, &flag) == -1)
+		return (write_error());
+	print_stack(&heada, "AFTER sort");
+	if (is_sorted(&heada))
+		printf(">> RESULT: OK (sorted)\n");
+	else
+		printf(">> RESULT: KO (not sorted)\n");
+	ft_lstclear(&heada);
+	return (0);
+}
