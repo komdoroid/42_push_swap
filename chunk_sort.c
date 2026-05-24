@@ -6,11 +6,12 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 14:53:11 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/25 20:24:35 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/25 21:50:29 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+#include <stdio.h>
 
 int	calc_chunk_size(int n)
 {
@@ -41,7 +42,8 @@ bool	find_pos(t_stack *b, int target)
 	return (false);
 }
 
-void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command)
+void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
+		t_form *flag)
 {
 	int	size;
 	int	order;
@@ -58,21 +60,23 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command)
 			index = a->top->index;
 			if ((order - 1) * size <= index && index < order * size)
 			{
-				push_b(b, a, command);
+				push_b(b, a, command, flag);
 				count++;
 				if (count == size)
-					break;
+					break ;
 			}
 			else
 			{
-				rotate_a(a, command, 1);
+				rotate_a(a, command, flag, 1);
 			}
+			// printf("a->size: %d\n", a->size);
 		}
 		order++;
 	}
 }
 
-void	sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command)
+void	sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command,
+		t_form *flag)
 {
 	int	target_index;
 
@@ -82,23 +86,23 @@ void	sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command)
 		if (find_pos(b, target_index))
 		{
 			while (target_index != b->top->index)
-				rotate_b(b, command, 1);
-			push_a(a, b,command);
+				rotate_b(b, command, flag, 1);
+			push_a(a, b, command, flag);
 		}
 		else
 		{
 			while (target_index != b->top->index)
-				reverse_rotate_b(b, command, 1);
-			push_a(a, b, command);
+				reverse_rotate_b(b, command, flag, 1);
+			push_a(a, b, command, flag);
 		}
 		target_index--;
 	}
 }
 
-void	chunk_sort(t_stack *a, t_stack *b, t_command *command)
+void	chunk_sort(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
 	if (!a || !b || a->size < 2)
 		return ;
-	push_chunks_to_b(a, b, command);
-	sort_chunks_to_a(a, b, command);
+	push_chunks_to_b(a, b, command, flag);
+	sort_chunks_to_a(a, b, command, flag);
 }

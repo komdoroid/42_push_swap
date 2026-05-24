@@ -6,7 +6,11 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:41:13 by kkomurat          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/05/24 23:21:01 by kkomurat         ###   ########.fr       */
+=======
+/*   Updated: 2026/05/24 23:21:34 by riwatana         ###   ########.fr       */
+>>>>>>> 9a7ec1e (bench_no_write)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +60,14 @@ void	reconnect_to(t_stack *to, t_node *node)
 	to->size++;
 }
 
-void	push_a(t_stack *a, t_stack *b, t_command *command)
+void	push_a(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
 	push(a, b);
-	output_command(command, "pa\n");
+	output_command(flag, command, "pa\n");
 }
 
-void	push_b(t_stack *b, t_stack *a, t_command *command)
+void	push_b(t_stack *b, t_stack *a, t_command *command, t_form *flag)
 {
 	push(b, a);
-	output_command(command, "pb\n");
+	output_command(flag, command, "pb\n");
 }

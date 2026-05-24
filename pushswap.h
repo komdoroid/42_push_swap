@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 22:51:59 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 23:40:16 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_command
 	int				rra;
 	int				rrb;
 	int				rrr;
+	int				total;
 
 }					t_command;
 
@@ -82,19 +83,24 @@ double				disorder(t_stack *head);
 void				push(t_stack *to, t_stack *from);
 void				reconnect_from(t_stack *from, t_node *node);
 void				reconnect_to(t_stack *to, t_node *node);
-void				push_a(t_stack *a, t_stack *b, t_command *command);
-void				push_b(t_stack *b, t_stack *a, t_command *command);
+void				push_a(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
+void				push_b(t_stack *b, t_stack *a, t_command *command,
+						t_form *flag);
 void				reverse_rotate(t_stack *head);
 void				reverse_rotate_a(t_stack *a, t_command *command,
-						int output);
+						t_form *flag, int output);
 void				reverse_rotate_b(t_stack *b, t_command *command,
-						int output);
+						t_form *flag, int output);
 void				rverse_rotate_both(t_stack *a, t_stack *b,
-						t_command *command);
+						t_command *command, t_form *flag);
 void				rotate(t_stack *head);
-void				rotate_a(t_stack *a, t_command *command, int output);
-void				rotate_b(t_stack *b, t_command *command, int output);
-void				rotate_both(t_stack *a, t_stack *b, t_command *command);
+void				rotate_a(t_stack *a, t_command *command, t_form *flag,
+						int output);
+void				rotate_b(t_stack *b, t_command *command, t_form *flag,
+						int output);
+void				rotate_both(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
 void				swap(t_stack *head);
 void				swap_a(t_stack *head, t_command *command, int output);
 void				swap_b(t_stack *head, t_command *command, int output);
@@ -107,15 +113,19 @@ long				calc_mistakes(t_stack *head, int size);
 int					ps_strlen(char *str);
 void				command_init(t_command *command);
 void				count_command(t_command *command, char *type);
-int					output_command(t_command *command, char *type);
+int					output_command(t_form *flag, t_command *command,
+						char *type);
 int					select_strategy(t_stack *a, t_stack *b, t_form *flag);
-void				simple_sort(t_stack *a, t_stack *b, t_command *command);
-void				radix_sort(t_stack *a, t_stack *b, t_command *command);
+void				simple_sort(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
+void				radix_sort(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
 int					get_max_bits(int size);
 int					calc_chunk_size(int n);
 bool				find_pos(t_stack *b, int target);
-void				push_chunks_to_b(t_stack *a, t_stack *b,
-						t_command *command);
-void				sort_chunks_to_a(t_stack *a, t_stack *b,
-						t_command *command);
-void				chunk_sort(t_stack *a, t_stack *b, t_command *command);
+void				push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
+void				sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
+void				chunk_sort(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
