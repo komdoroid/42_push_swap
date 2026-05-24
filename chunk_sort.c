@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 14:53:11 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/24 22:52:39 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 23:41:03 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ bool	find_pos(t_stack *b, int target)
 	return (false);
 }
 
-void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command)
+void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
+		t_form *flag)
 {
 	int	size;
 	int	order;
@@ -55,15 +56,16 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command)
 		{
 			index = a->top->index;
 			if ((order - 1) * size < index && index < order * size)
-				push_b(b, a, command);
+				push_b(b, a, command, flag);
 			else
-				rotate_a(a, command, 1);
+				rotate_a(a, command, flag, 1);
 		}
 		order++;
 	}
 }
 
-void	sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command)
+void	sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command,
+		t_form *flag)
 {
 	int	target_index;
 
@@ -73,23 +75,23 @@ void	sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command)
 		if (find_pos(b, target_index))
 		{
 			while (target_index != b->top->index)
-				rotate_b(b, command, 1);
-			push_a(a, b,command);
+				rotate_b(b, command, flag, 1);
+			push_a(a, b, command, flag);
 		}
 		else
 		{
 			while (target_index != b->top->index)
-				reverse_rotate_b(b, command, 1);
-			push_a(a, b, command);
+				reverse_rotate_b(b, command, flag, 1);
+			push_a(a, b, command, flag);
 		}
 		target_index--;
 	}
 }
 
-void	chunk_sort(t_stack *a, t_stack *b, t_command *command)
+void	chunk_sort(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
 	if (!a || !b || a->size < 2)
 		return ;
-	push_chunks_to_b(a, b, command);
-	sort_chunks_to_a(a, b, command);
+	push_chunks_to_b(a, b, command, flag);
+	sort_chunks_to_a(a, b, command, flag);
 }
