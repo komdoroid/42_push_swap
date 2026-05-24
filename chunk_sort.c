@@ -47,18 +47,29 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
 	int	size;
 	int	order;
 	int	index;
+	int	rotated;
+	int	initial_size;
 
 	size = calc_chunk_size(a->size);
 	order = 1;
 	while (order <= size)
 	{
-		while (a->size > 0)
+		rotated = 0;
+		initial_size = a->size;
+		while (a->size > 0 && rotated < initial_size)
 		{
 			index = a->top->index;
-			if ((order - 1) * size < index && index < order * size)
+			if ((order - 1) * size <= index && index < order * size)
+			{
 				push_b(b, a, command, flag);
+				rotated = 0;
+				initial_size = a->size;
+			}
 			else
+			{
 				rotate_a(a, command, flag, 1);
+				rotated++;
+			}
 		}
 		order++;
 	}
