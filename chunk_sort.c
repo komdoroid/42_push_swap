@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 14:53:11 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/24 22:52:39 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 23:12:33 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,29 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command)
 	int	size;
 	int	order;
 	int	index;
+	int	rotated;
+	int	initial_size;
 
 	size = calc_chunk_size(a->size);
 	order = 1;
 	while (order <= size)
 	{
-		while (a->size > 0)
+		rotated = 0;
+		initial_size = a->size;
+		while (a->size > 0 && rotated < initial_size)
 		{
 			index = a->top->index;
-			if ((order - 1) * size < index && index < order * size)
+			if ((order - 1) * size <= index && index < order * size)
+			{
 				push_b(b, a, command);
+				rotated = 0;
+				initial_size = a->size;
+			}
 			else
+			{
 				rotate_a(a, command, 1);
+				rotated++;
+			}
 		}
 		order++;
 	}
