@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:41:13 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 23:30:49 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 14:06:54 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	push(t_stack *to, t_stack *from)
 {
 	t_node	*node;
 
-	if (!from || !from->top || from->size < 2)
+	if (!from || !from->top || from->size < 1)
 		return ;
 	node = from->top;
 	from->top = node->next;

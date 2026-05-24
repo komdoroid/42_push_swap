@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 12:57:40 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/24 13:44:41 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,5 @@ void				swap(t_stack *head);
 void				swap_a(t_stack *head);
 void				swap_b(t_stack *head);
 void				swap_both(t_stack *a, t_stack *b);
+void				assign_index(t_stack *a);
+int					calc_index(t_stack *a, t_node *current);

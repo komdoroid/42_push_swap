@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 12:56:56 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/24 14:03:51 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,68 +113,82 @@ int	parse(t_stack *head, t_form *flag, int argc, char **argv)
 		ft_lstclear(head);
 		return (-1);
 	}
+	assign_index(head);
 	return (1);
 }
 
-void	print_stack(t_stack *head) // mainのテスト用関数
+
+void	print_stack(t_stack *head, const char *label)
 {
-	t_node *current;
+	t_node	*current;
+	int		i;
 
-	int i;
-
+	printf("===== %s =====\n", label);
 	if (head == NULL || head->top == NULL)
 	{
-		printf("empty stack\n");
+		printf("  (empty)\n");
 		return ;
 	}
 	current = head->top;
 	i = 0;
 	while (i < head->size)
 	{
-		printf("[%d] value = %ld\n", i, current->value);
+		printf("  [%d] value=%ld  index=%d\n", i, current->value,
+			current->index);
 		current = current->next;
 		i++;
 	}
-	printf("size = %d\n", head->size);
-
-	current = head->top;
-	i = 0;
-	while (i < head->size)
-	{
-		printf("node %d: addr=%p, next=%p, prev=%p\n", i, (void *)current,
-			(void *)current->next, (void *)current->prev);
-		current = current->next;
-		i++;
-	}
-	current = head->top;
-	printf("DEBUG: freeing addr=%p (i=%d, size=%d)\n", (void *)current, i,
-		head->size);
-
-	i = 0;
-	while (i < head->size)
-	{
-		printf("node %d: num=%ld\n", i, current->value);
-		current = current->next;
-		i++;
-	}
+	printf("  size = %d\n", head->size);
 }
 
-int	main(int argc, char **argv)
+int	is_sorted(t_stack *head)
 {
-	t_stack	heada;
-	t_stack	headb;
-	t_form	flag;
+	t_node	*current;
+	int		i;
 
-	if (argc <= 1)
-		return (0);
-	stack_init(&headb);
-	if (parse(&heada, &flag, argc, argv) == -1)
+	if (head == NULL || head->top == NULL || head->size < 2)
+		return (1);
+	current = head->top;
+	i = 0;
+	while (i < head->size - 1)
 	{
-		write_error();
-		return (-1);
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
+		i++;
 	}
-	simple_sort(&heada, &headb);
-	print_stack(&heada);
-	ft_lstclear(&heada);
-	return (0);
+	return (1);
 }
+
+int main(void)
+{
+    printf("-1   -> %ld\n", ps_atol("-1"));
+    printf("-12  -> %ld\n", ps_atol("-12"));
+    printf("-101 -> %ld\n", ps_atol("-101"));
+    printf("-201 -> %ld\n", ps_atol("-201"));
+    return (0);
+}
+// int	main(int argc, char **argv)
+// {
+// 	t_stack	heada;
+// 	t_stack	headb;
+// 	t_form	flag;
+
+// 	if (argc <= 1)
+// 		return (0);
+// 	stack_init(&headb);
+// 	if (parse(&heada, &flag, argc, argv) == -1)
+// 	{
+// 		write_error();
+// 		return (1);
+// 	}
+// 	print_stack(&heada, "BEFORE sort");
+// 	// simple_sort(&heada, &headb);
+// 	// print_stack(&heada, "AFTER sort");
+// 	// if (is_sorted(&heada))
+// 	// 	printf(">> RESULT: OK (sorted)\n");
+// 	// else
+// 	// 	printf(">> RESULT: KO (not sorted)\n");
+// 	ft_lstclear(&heada);
+// 	return (0);
+// }
