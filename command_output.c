@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 22:22:32 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:50:26 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,15 @@ int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 	if (flag->simple == 1)
 		simple_sort(a, b, command);
 	else if (flag->medium == 1)
-		return (1);
+		chunk_sort(a, b, command);
 	else if (flag->complex == 1)
 		radix_sort(a, b, command);
 	dis = disorder(a);
 	printf("DISORDER ===== %f\n", dis); // テスト用！！！！！！
 	if (dis < 0.2)
 		simple_sort(a, b, command);
-	// else if (dis >= 0.2 && dis < 0.5)
-	// 	return (1);
+	else if (dis >= 0.2 && dis < 0.5)
+		chunk_sort(a, b, command);
 	else
 		radix_sort(a, b, command);
 	free(command);

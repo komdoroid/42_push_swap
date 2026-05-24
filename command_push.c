@@ -6,11 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:41:13 by kkomurat          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/05/24 22:15:59 by riwatana         ###   ########.fr       */
-=======
-/*   Updated: 2026/05/24 14:40:24 by kkomurat         ###   ########.fr       */
->>>>>>> chunk_sort
+/*   Updated: 2026/05/24 22:52:13 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +27,7 @@ void	reconnect_from(t_stack *from, t_node *node)
 {
 	if (from->size == 1)
 		from->top = NULL;
-	else 
+	else
 	{
 		from->top = node->next;
 		from->top->prev = node->prev;

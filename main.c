@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 22:37:59 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/24 22:45:33 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,3 +181,4 @@ int	main(int argc, char **argv)
 	ft_lstclear(&heada);
 	return (0);
 }
+
