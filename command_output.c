@@ -12,16 +12,6 @@
 
 #include "pushswap.h"
 
-int	ps_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 void	command_init(t_command *command)
 {
 	command->sa = 0;
@@ -79,26 +69,54 @@ int	output_command(t_form *flag, t_command *command, char *type)
 
 int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 {
-	double		dis;
 	t_command	*command;
 
 	command = (t_command *)malloc(sizeof(t_command));
 	if (command == NULL)
 		return (-1);
+	flag->disorder = disorder(a);
 	if (flag->simple == 1)
+	{
 		simple_sort(a, b, command, flag);
+		flag->strategy = "simple\n";
+	}
 	else if (flag->medium == 1)
+	{
 		chunk_sort(a, b, command, flag);
+		flag->strategy = "medium\n";
+	}
 	else if (flag->complex == 1)
+	{
 		radix_sort(a, b, command, flag);
-	dis = disorder(a);
-	printf("DISORDER ===== %f\n", dis); // テスト用！！！！！！
-	if (dis < 0.2)
-		simple_sort(a, b, command, flag);
-	else if (dis >= 0.2 && dis < 0.5)
-		chunk_sort(a, b, command, flag);
+		flag->strategy = "complex\n";
+	}
 	else
-		radix_sort(a, b, command, flag);
+		adaptive_select(a, b, command, flag);
+	if (flag->bench == 1)
+	{
+		if (bench_output(command, flag) == -1)
+			return (write_error());
+	}
 	free(command);
 	return (1);
+}
+
+void	adaptive_select(t_stack *a, t_stack *b, t_command *command,
+		t_form *flag)
+{
+	if (flag->disorder < 0.2)
+	{
+		simple_sort(a, b, command, flag);
+		flag->strategy = "Adaptive / O(n2)\n";
+	}
+	else if (flag->disorder >= 0.2 && flag->disorder < 0.5)
+	{
+		chunk_sort(a, b, command, flag);
+		flag->strategy = "Adaptive / O(n√n)\n";
+	}
+	else
+	{
+		radix_sort(a, b, command, flag);
+		flag->strategy = "Adaptive / O(nlogn)\n";
+	}
 }

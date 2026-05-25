@@ -60,25 +60,14 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
 			index = a->top->index;
 			if ((order - 1) * size <= index && index < order * size)
 			{
-<<<<<<< HEAD
 				push_b(b, a, command, flag);
-				rotated = 0;
-				initial_size = a->size;
+				count++;
+				if (count == size)
+					break ;
 			}
 			else
 			{
 				rotate_a(a, command, flag, 1);
-				rotated++;
-=======
-				push_b(b, a, command);
-				count++;
-				if (count == size)
-					break;
-			}
-			else
-			{
-				rotate_a(a, command, 1);
->>>>>>> 0ae6a89 (fix complete)
 			}
 			printf("a->size: %d\n", a->size);
 		}

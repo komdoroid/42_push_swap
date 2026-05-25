@@ -76,6 +76,6 @@ void	assign_index(t_stack *a)
 // 	assign_index(&a);
 // 	printf("--- after assign_index ---\n");
 // 	print_index(&a);
-// 	ft_lstclear(&a);
+// 	ps_lstclear(&a);
 // 	return (0);
 // }
