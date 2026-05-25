@@ -6,12 +6,11 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 14:53:11 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/25 21:56:16 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:05:19 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
-#include <stdio.h>
 
 int	calc_chunk_size(int n)
 {
@@ -69,7 +68,6 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
 			{
 				rotate_a(a, command, flag, 1);
 			}
-			// printf("a->size: %d\n", a->size);
 		}
 		order++;
 	}
