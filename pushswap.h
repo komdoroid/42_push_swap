@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 23:40:16 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/25 18:29:00 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,5 +141,5 @@ int					dis_output(t_form *flag);
 int					stra_ops_output(t_command *command, t_form *flag);
 int					swap_push_output(t_command *command);
 int					rotate_output(t_command *command);
-void				adaptive_select(t_stack *a, t_stack *b, t_command *command,
+int				adaptive_select(t_stack *a, t_stack *b, t_command *command,
 						t_form *flag);

@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:39:58 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/24 23:20:43 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:40:46 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	swap_b(t_stack *head, t_command *command, t_form *flag, int output)
 
 void	swap_both(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
-	swap_a(a, command,flag, 0);
-	swap_b(b, command,flag, 0);
+	swap_a(a, command, flag, 0);
+	swap_b(b, command, flag, 0);
 	output_command(flag, command, "ss\n");
 }

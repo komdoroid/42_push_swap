@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 13:08:21 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/23 13:08:23 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:39:17 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 long	calc_mistakes(t_stack *head, int size)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	t_node	*left;
 	t_node	*right;
 	long	mistakes;
@@ -29,7 +29,7 @@ long	calc_mistakes(t_stack *head, int size)
 		j = i + 1;
 		while (j < size)
 		{
-			if (left->value > right-> value)
+			if (left->value > right->value)
 				mistakes++;
 			right = right->next;
 			j++;
@@ -43,7 +43,7 @@ long	calc_mistakes(t_stack *head, int size)
 double	disorder(t_stack *head)
 {
 	long	mistakes;
-	int	size;
+	int		size;
 	double	total_pairs;
 
 	size = head->size;
@@ -53,4 +53,3 @@ double	disorder(t_stack *head)
 	total_pairs = (double)size * (size - 1) / 2;
 	return ((double)mistakes / total_pairs);
 }
-
