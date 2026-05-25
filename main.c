@@ -110,7 +110,7 @@ int	parse(t_stack *head, t_form *flag, int argc, char **argv)
 		return (-1);
 	if (check_duplicates(head) == -1)
 	{
-		ft_lstclear(head);
+		ps_lstclear(head);
 		return (-1);
 	}
 	assign_index(head);
@@ -170,15 +170,14 @@ int	main(int argc, char **argv)
 	stack_init(&headb);
 	if (parse(&heada, &flag, argc, argv) == -1)
 		return (write_error());
-	print_stack(&heada, "BEFORE sort");
+	// print_stack(&heada, "BEFORE sort");
 	if (select_strategy(&heada, &headb, &flag) == -1)
 		return (write_error());
-	print_stack(&heada, "AFTER sort");
+	// print_stack(&heada, "AFTER sort");
 	if (is_sorted(&heada))
 		printf(">> RESULT: OK (sorted)\n");
 	else
 		printf(">> RESULT: KO (not sorted)\n");
-	ft_lstclear(&heada);
+	ps_lstclear(&heada);
 	return (0);
 }
-

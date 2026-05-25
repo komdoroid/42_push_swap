@@ -15,7 +15,6 @@
 void	simple_sort(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
 	int	i;
-
 	if (!a || !b || a->size < 2)
 		return ;
 	i = 0;

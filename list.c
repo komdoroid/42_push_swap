@@ -19,14 +19,14 @@ int	list_apply(t_stack *head, long num)
 	new = node_new(num);
 	if (new == NULL)
 	{
-		ft_lstclear(head);
+		ps_lstclear(head);
 		return (-1);
 	}
 	if (head->top == NULL)
 		head->top = new;
 	if (ps_lstadd_back(head, new) == -1)
 	{
-		ft_lstclear(head);
+		ps_lstclear(head);
 		return (-1);
 	}
 	head->size = head->size + 1;
@@ -59,7 +59,7 @@ int	ps_lstadd_back(t_stack *head, t_node *new)
 	return (1);
 }
 
-void	ft_lstclear(t_stack *head)
+void	ps_lstclear(t_stack *head)
 {
 	t_node	*current;
 	t_node	*next_node;

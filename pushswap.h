@@ -40,6 +40,8 @@ typedef struct s_form
 	int				complex;
 	int				adaptive;
 	int				bench;
+	char			*strategy;
+	double			disorder;
 
 }					t_form;
 
@@ -65,12 +67,15 @@ char				**make_grid(char **res, char const *s, char c);
 void				free_all(char **res);
 char				*fill_words(char const *s, int len);
 int					word_count(char const *s, char c);
+int					ps_strlen(char *str);
+int					ps_strncmp(char *s1, char *s2, int n);
+int					ps_putnbr_fd(int n, int fd);
+int					ps_putstr_fd(char *s, int fd);
 int					list_apply(t_stack *head, long num);
 void				stack_init(t_stack *stack);
 int					ps_lstadd_back(t_stack *head, t_node *new);
-void				ft_lstclear(t_stack *head);
+void				ps_lstclear(t_stack *head);
 t_node				*node_new(long value);
-int					ps_strncmp(char *s1, char *s2, int n);
 void				flag_init(t_form *flag);
 int					flag_check(t_form *flag, char **argv, int argc);
 int					write_error(void);
@@ -113,7 +118,6 @@ int					calc_index(t_stack *a, t_node *current);
 
 double				disorder(t_stack *head);
 long				calc_mistakes(t_stack *head, int size);
-int					ps_strlen(char *str);
 void				command_init(t_command *command);
 void				count_command(t_command *command, char *type);
 int					output_command(t_form *flag, t_command *command,
@@ -131,4 +135,11 @@ void				push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
 void				sort_chunks_to_a(t_stack *a, t_stack *b, t_command *command,
 						t_form *flag);
 void				chunk_sort(t_stack *a, t_stack *b, t_command *command,
+						t_form *flag);
+int					bench_output(t_command *command, t_form *flag);
+int					dis_output(t_form *flag);
+int					stra_ops_output(t_command *command, t_form *flag);
+int					swap_push_output(t_command *command);
+int					rotate_output(t_command *command);
+void				adaptive_select(t_stack *a, t_stack *b, t_command *command,
 						t_form *flag);

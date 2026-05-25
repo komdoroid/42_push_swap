@@ -12,22 +12,6 @@
 
 #include "pushswap.h"
 
-int	ps_strncmp(char *s1, char *s2, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i <= n)
-	{
-		if ((unsigned char)s1[i] != (unsigned char)s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		if (s1[i] == '\0')
-			return (0);
-		i++;
-	}
-	return (-1);
-}
-
 void	flag_init(t_form *flag)
 {
 	flag->simple = 0;
@@ -35,6 +19,8 @@ void	flag_init(t_form *flag)
 	flag->complex = 0;
 	flag->adaptive = 0;
 	flag->bench = 0;
+	flag->strategy = NULL;
+	flag->disorder = 0;
 	return ;
 }
 
@@ -68,5 +54,5 @@ int	flag_check(t_form *flag, char **argv, int argc)
 int	write_error(void)
 {
 	write(2, "Error\n", 6);
-	return(-1) ;
+	return (-1);
 }
