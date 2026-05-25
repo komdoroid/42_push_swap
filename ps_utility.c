@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 19:41:03 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/25 19:41:05 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/25 22:31:13 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ps_strncmp(char *s1, char *s2, int n)
 int	ps_putnbr_fd(int n, int fd)
 
 {
-	char a;
+	char	a;
 
 	if (n == -2147483648)
 	{

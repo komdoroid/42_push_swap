@@ -6,7 +6,7 @@
 #    By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/25 21:08:55 by kkomurat          #+#    #+#              #
-#    Updated: 2026/05/25 21:21:43 by kkomurat         ###   ########.fr        #
+#    Updated: 2026/05/25 22:48:55 by kkomurat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,10 @@ SRCS =  chunk_sort.c \
 		main.c \
 		ps_split.c \
 		radix_sort.c \
-		simple.c
+		simple.c \
+		parse.c \
+		bench_output.c \
+		ps_utility.c
        
 OBJS = $(SRCS:.c=.o)
 
