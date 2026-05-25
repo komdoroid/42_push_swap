@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 23:39:09 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/25 18:34:54 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	command_init(t_command *command)
 	command->rra = 0;
 	command->rrb = 0;
 	command->rrr = 0;
+	command->total = 0;
 }
 
 void	count_command(t_command *command, char *type)
@@ -51,6 +52,7 @@ void	count_command(t_command *command, char *type)
 		command->rrb++;
 	else if (ps_strncmp(type, "rrr\n", 4) == 0)
 		command->rrr++;
+	command->total++;
 }
 
 int	output_command(t_form *flag, t_command *command, char *type)
@@ -69,54 +71,54 @@ int	output_command(t_form *flag, t_command *command, char *type)
 
 int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 {
-	t_command	*command;
+	t_command	command;
 
-	command = (t_command *)malloc(sizeof(t_command));
-	if (command == NULL)
-		return (-1);
+	command_init(&command);
 	flag->disorder = disorder(a);
 	if (flag->simple == 1)
 	{
-		simple_sort(a, b, command, flag);
+		simple_sort(a, b, &command, flag);
 		flag->strategy = "simple\n";
 	}
 	else if (flag->medium == 1)
 	{
-		chunk_sort(a, b, command, flag);
+		chunk_sort(a, b, &command, flag);
 		flag->strategy = "medium\n";
 	}
 	else if (flag->complex == 1)
 	{
-		radix_sort(a, b, command, flag);
+		radix_sort(a, b, &command, flag);
 		flag->strategy = "complex\n";
 	}
-	else
-		adaptive_select(a, b, command, flag);
-	if (flag->bench == 1)
-	{
-		if (bench_output(command, flag) == -1)
-			return (write_error());
-	}
-	free(command);
+	if (adaptive_select(a, b, &command, flag) == -1)
+		return (-1);
 	return (1);
 }
 
-void	adaptive_select(t_stack *a, t_stack *b, t_command *command,
-		t_form *flag)
+int	adaptive_select(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
-	if (flag->disorder < 0.2)
+	if (flag->simple == 0 && flag->medium == 0 && flag->complex == 0)
 	{
-		simple_sort(a, b, command, flag);
-		flag->strategy = "Adaptive / O(n2)\n";
+		if (flag->disorder < 0.2)
+		{
+			simple_sort(a, b, command, flag);
+			flag->strategy = "Adaptive / O(n2)\n";
+		}
+		else if (flag->disorder >= 0.2 && flag->disorder < 0.5)
+		{
+			chunk_sort(a, b, command, flag);
+			flag->strategy = "Adaptive / O(n√n)\n";
+		}
+		else
+		{
+			radix_sort(a, b, command, flag);
+			flag->strategy = "Adaptive / O(nlogn)\n";
+		}
 	}
-	else if (flag->disorder >= 0.2 && flag->disorder < 0.5)
+	if (flag->bench == 1)
 	{
-		chunk_sort(a, b, command, flag);
-		flag->strategy = "Adaptive / O(n√n)\n";
+		if (bench_output(command, flag) == -1)
+			return (-1);
 	}
-	else
-	{
-		radix_sort(a, b, command, flag);
-		flag->strategy = "Adaptive / O(nlogn)\n";
-	}
+	return (1);
 }

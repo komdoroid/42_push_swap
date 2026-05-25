@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 21:29:02 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/24 23:29:58 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:39:29 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	simple_sort(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
 	int	i;
+
 	if (!a || !b || a->size < 2)
 		return ;
 	i = 0;

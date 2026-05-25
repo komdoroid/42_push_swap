@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 14:53:11 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/24 23:41:03 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/25 19:40:28 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	push_chunks_to_b(t_stack *a, t_stack *b, t_command *command,
 			{
 				rotate_a(a, command, flag, 1);
 			}
-			printf("a->size: %d\n", a->size);
+			// printf("a->size: %d\n", a->size);
 		}
 		order++;
 	}
