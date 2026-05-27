@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 22:51:47 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:02:04 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/27 23:40:03 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,3 @@ void	reverse_rotate_both_bonus(t_stack *a, t_stack *b)
 	reverse_rotate(a);
 	reverse_rotate(b);
 }
-

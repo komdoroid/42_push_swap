@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 21:29:36 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/27 23:37:12 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 		radix_sort(a, b, &command);
 		flag->strategy = "complex\n";
 	}
-	if (adaptive_select(a, b, &command,flag) == -1)
+	if (adaptive_select(a, b, &command, flag) == -1)
 		return (-1);
 	return (1);
 }
