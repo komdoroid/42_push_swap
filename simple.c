@@ -6,13 +6,13 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 21:29:02 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/25 19:39:29 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/27 21:29:59 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	simple_sort(t_stack *a, t_stack *b, t_command *command, t_form *flag)
+void	simple_sort(t_stack *a, t_stack *b, t_command *command)
 {
 	int	i;
 
@@ -22,10 +22,10 @@ void	simple_sort(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 	while (a->size > 0)
 	{
 		while (a->top->index != i)
-			rotate_a(a, command, flag, 1);
-		push_b(b, a, command, flag);
+			rotate_a(a, command ,1);
+		push_b(b, a, command);
 		i++;
 	}
 	while (b->size > 0)
-		push_a(a, b, command, flag);
+		push_a(a, b, command);
 }

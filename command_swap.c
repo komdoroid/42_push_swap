@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:39:58 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/25 19:40:46 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/27 22:20:18 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,23 @@ void	swap(t_stack *head)
 	head->top = second;
 }
 
-void	swap_a(t_stack *head, t_command *command, t_form *flag, int output)
+void	swap_a(t_stack *head, t_command *command, int output)
 {
 	swap(head);
 	if (output == 1)
-		output_command(flag, command, "sa\n");
+		output_command(command, "sa\n");
 }
 
-void	swap_b(t_stack *head, t_command *command, t_form *flag, int output)
+void	swap_b(t_stack *head, t_command *command, int output)
 {
 	swap(head);
 	if (output == 1)
-		output_command(flag, command, "sb\n");
+		output_command(command, "sb\n");
 }
 
-void	swap_both(t_stack *a, t_stack *b, t_command *command, t_form *flag)
+void	swap_both(t_stack *a, t_stack *b, t_command *command)
 {
-	swap_a(a, command, flag, 0);
-	swap_b(b, command, flag, 0);
-	output_command(flag, command, "ss\n");
+	swap_a(a, command, 0);
+	swap_b(b, command, 0);
+	output_command(command, "ss\n");
 }

@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 12:45:32 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/24 23:27:10 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/27 22:20:33 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ void	rotate(t_stack *head)
 	head->top = head->top->next;
 }
 
-void	rotate_a(t_stack *a, t_command *command, t_form *flag, int output)
+void	rotate_a(t_stack *a, t_command *command, int output)
 {
 	rotate(a);
 	if (output == 1)
-		output_command(flag, command, "ra\n");
+		output_command(command, "ra\n");
 }
 
-void	rotate_b(t_stack *b, t_command *command, t_form *flag, int output)
+void	rotate_b(t_stack *b, t_command *command, int output)
 {
 	rotate(b);
 	if (output == 1)
-		output_command(flag, command, "rb\n");
+		output_command(command, "rb\n");
 }
 
-void	rotate_both(t_stack *a, t_stack *b, t_command *command, t_form *flag)
+void	rotate_both(t_stack *a, t_stack *b, t_command *command)
 {
-	rotate_a(a, command, flag, 0);
-	rotate_b(b, command, flag, 0);
-	output_command(flag, command, "rr\n");
+	rotate_a(a, command, 0);
+	rotate_b(b, command, 0);
+	output_command(command, "rr\n");
 }

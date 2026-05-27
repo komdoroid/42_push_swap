@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 20:31:03 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/27 21:29:36 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	count_command(t_command *command, char *type)
 	command->total++;
 }
 
-int	output_command(t_form *flag, t_command *command, char *type)
+int	output_command(t_command *command, char *type)
 {
 	int	len;
 
@@ -74,20 +74,20 @@ int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 	flag->disorder = disorder(a);
 	if (flag->simple == 1)
 	{
-		simple_sort(a, b, &command, flag);
+		simple_sort(a, b, &command);
 		flag->strategy = "simple\n";
 	}
 	else if (flag->medium == 1)
 	{
-		chunk_sort(a, b, &command, flag);
+		chunk_sort(a, b, &command);
 		flag->strategy = "medium\n";
 	}
 	else if (flag->complex == 1)
 	{
-		radix_sort(a, b, &command, flag);
+		radix_sort(a, b, &command);
 		flag->strategy = "complex\n";
 	}
-	if (adaptive_select(a, b, &command, flag) == -1)
+	if (adaptive_select(a, b, &command,flag) == -1)
 		return (-1);
 	return (1);
 }
@@ -98,17 +98,17 @@ int	adaptive_select(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 	{
 		if (flag->disorder < 0.2)
 		{
-			simple_sort(a, b, command, flag);
+			simple_sort(a, b, command);
 			flag->strategy = "Adaptive / O(n2)\n";
 		}
 		else if (flag->disorder >= 0.2 && flag->disorder < 0.5)
 		{
-			chunk_sort(a, b, command, flag);
+			chunk_sort(a, b, command);
 			flag->strategy = "Adaptive / O(n√n)\n";
 		}
 		else
 		{
-			radix_sort(a, b, command, flag);
+			radix_sort(a, b, command);
 			flag->strategy = "Adaptive / O(nlogn)\n";
 		}
 	}

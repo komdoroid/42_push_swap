@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/25 22:28:19 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/27 22:29:17 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ int	main(int argc, char **argv)
 	// else
 	// 	printf(">> RESULT: KO (not sorted)\n");
 	ps_lstclear(&heada);
+	ps_lstclear(&headb);
 	return (0);
 }
