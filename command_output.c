@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/25 22:53:08 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/27 20:31:03 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,8 @@ int	output_command(t_form *flag, t_command *command, char *type)
 	int	len;
 
 	len = ps_strlen(type);
-	if (flag->bench == 0)
-	{
-		if (write(1, type, len) == -1)
-			return (-1);
-	}
+	if (write(1, type, len) == -1)
+		return (-1);
 	count_command(command, type);
 	return (1);
 }
