@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_output.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 15:06:23 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/30 19:20:41 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,17 @@ int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 	{
 		flag->simple = 1;
 		simple_sort(a, b, &command);
-		flag->strategy = "simple\n";
+		flag->strategy = "Simple / O(n2)\n";
 	}
 	else if (flag->medium == 1)
 	{
 		chunk_sort(a, b, &command);
-		flag->strategy = "medium\n";
+		flag->strategy = "Medium / O(n√n)\n";
 	}
 	else if (flag->complex == 1)
 	{
 		radix_sort(a, b, &command);
-		flag->strategy = "complex\n";
+		flag->strategy = "Complex / O(nlogn)\n";
 	}
 	if (adaptive_select(a, b, &command, flag) == -1)
 		return (-1);

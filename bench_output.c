@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 19:38:06 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/25 19:39:58 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 18:57:03 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	dis_output(t_form *flag)
 	frac_part = (int)(flag->disorder * 10000) % 100;
 	while (error != -1)
 	{
-		error = ps_putstr_fd("disorder:  ", 2);
+		error = ps_putstr_fd("[bench] disorder:  ", 2);
 		error = ps_putnbr_fd(int_part, 2);
 		error = ps_putstr_fd(".", 2);
 		if (frac_part < 10)
@@ -57,9 +57,9 @@ int	stra_ops_output(t_command *command, t_form *flag)
 	error = 0;
 	while (error != -1)
 	{
-		error = ps_putstr_fd("strategy:  ", 2);
+		error = ps_putstr_fd("[bench] strategy:  ", 2);
 		error = ps_putstr_fd(flag->strategy, 2);
-		error = ps_putstr_fd("total_ops:  ", 2);
+		error = ps_putstr_fd("[bench] total_ops:  ", 2);
 		error = ps_putnbr_fd(command->total, 2);
 		error = ps_putstr_fd("\n", 2);
 		break ;
@@ -76,7 +76,7 @@ int	swap_push_output(t_command *command)
 	error = 0;
 	while (error != -1)
 	{
-		error = ps_putstr_fd("sa:  ", 2);
+		error = ps_putstr_fd("[bench] sa:  ", 2);
 		error = ps_putnbr_fd(command->sa, 2);
 		error = ps_putstr_fd("  sb:  ", 2);
 		error = ps_putnbr_fd(command->sb, 2);
@@ -101,7 +101,7 @@ int	rotate_output(t_command *command)
 	error = 0;
 	while (error != -1)
 	{
-		error = ps_putstr_fd("ra:  ", 2);
+		error = ps_putstr_fd("[bench] ra:  ", 2);
 		error = ps_putnbr_fd(command->ra, 2);
 		error = ps_putstr_fd("  rb:  ", 2);
 		error = ps_putnbr_fd(command->rb, 2);
