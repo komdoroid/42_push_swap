@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 21:12:03 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/30 22:54:16 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,11 @@ int	main(int argc, char **argv)
 	stack_init(&headb);
 	if (parse(&heada, &flag, argc, argv) == -1)
 		return (write_error());
-	print_stack(&heada, "BEFORE sort");
 	flag.disorder = disorder(&heada);
 	if (flag.disorder == 0)
 		return (0);
 	if (select_strategy(&heada, &headb, &flag) == -1)
 		return (write_error());
-	print_stack(&heada, "AFTER sort");
-	if (is_sorted(&heada))
-		printf(">> RESULT: OK (sorted)\n");
-	else
-		printf(">> RESULT: KO (not sorted)\n");
 	ps_lstclear(&heada);
 	ps_lstclear(&headb);
 	return (0);
