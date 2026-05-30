@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 20:55:18 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 21:11:49 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	adaptive_select(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
 	if (flag->simple == 0 && flag->medium == 0 && flag->complex == 0)
 	{
-		if (0 < flag->disorder && flag->disorder < 0.2)
+		if ((0 < flag->disorder && flag->disorder < 0.2) || a->size < 20)
 		{
 			simple_sort(a, b, command);
 			flag->strategy = "Adaptive / O(n2)\n";
