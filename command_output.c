@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_output.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
+/*   By: kkomurat <kkomurat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 14:36:29 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/30 15:06:23 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 
 	command_init(&command);
 	flag->disorder = disorder(a);
-	if (flag->simple == 1 || a->size < 20)
+	if (flag->simple == 1 || (flag->medium == 0 && flag->complex == 0
+			&& a->size < 20))
 	{
 		flag->simple = 1;
 		simple_sort(a, b, &command);
