@@ -6,13 +6,13 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 22:51:47 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:40:03 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 22:12:13 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap_bonus.h"
 
-void	command_dispatch(char *command, t_stack *a, t_stack *b)
+int command_dispatch(char *command, t_stack *a, t_stack *b)
 {
 	if (ps_strncmp(command, "sa\n", 3) == 0)
 		swap(a);
@@ -36,6 +36,9 @@ void	command_dispatch(char *command, t_stack *a, t_stack *b)
 		reverse_rotate(b);
 	else if (ps_strncmp(command, "rrr\n", 4) == 0)
 		reverse_rotate_both_bonus(a, b);
+	else
+		return (-1);
+	return (1);
 }
 
 void	swap_both_bonus(t_stack *a, t_stack *b)
