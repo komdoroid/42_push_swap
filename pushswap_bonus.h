@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/18 21:54:34 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:39:25 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 20:56:19 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int			strline(char *s);
 char		*extract_parse(t_fdnode *file);
 char		*gnl_free(char **stash, char **buf, char **tmp);
 int			parse_bonus(t_stack *head, int argc, char **argv);
-int			write_error_bonus(void);
 int			sort_check_bonus(t_stack *a);
 void		command_dispatch(char *command, t_stack *a, t_stack *b);
 void		swap_both_bonus(t_stack *a, t_stack *b);

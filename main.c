@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 20:40:51 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/30 20:57:38 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	print_stack(t_stack *head, const char *label)
 {
-
 	t_node	*current;
 	int		i;
 
@@ -53,6 +52,12 @@ int	is_sorted(t_stack *head)
 		i++;
 	}
 	return (1);
+}
+
+int	write_error(void)
+{
+	write(2, "Error\n", 6);
+	return (-1);
 }
 
 int	main(int argc, char **argv)

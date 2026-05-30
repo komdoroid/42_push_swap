@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 22:51:43 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:26:19 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 20:56:11 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ int	parse_bonus(t_stack *head, int argc, char **argv)
 	}
 	assign_index(head);
 	return (1);
-}
-
-int	write_error_bonus(void)
-{
-	write(2, "Checker_Error\n", 14);
-	return (-1);
 }
 
 int	sort_check_bonus(t_stack *a)
@@ -66,7 +60,7 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_init(&headb);
 	if (parse_bonus(&heada, argc, argv) == -1)
-		return (write_error_bonus());
+		return (write_error());
 	while (1)
 	{
 		command = get_next_line(0);
