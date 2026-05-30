@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:37:26 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 19:21:00 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,9 @@ int	main(int argc, char **argv)
 	if (parse(&heada, &flag, argc, argv) == -1)
 		return (write_error());
 	// print_stack(&heada, "BEFORE sort");
+	if (disorder(a) == 0)
+		return (0);
+	flag->disorder = disorder(a);
 	if (select_strategy(&heada, &headb, &flag) == -1)
 		return (write_error());
 	// print_stack(&heada, "AFTER sort");
