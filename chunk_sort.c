@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 14:53:11 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/27 21:25:53 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 19:24:34 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ int	calc_chunk_size(int n)
 	return (chunk_size);
 }
 
-bool	find_pos(t_stack *b, int target)
+bool	find_pos(t_stack *stack, int target)
 {
 	t_node	*node;
 	int		median;
 	int		i;
 
-	node = b->top;
-	median = b->size / 2;
+	node = stack->top;
+	median = stack->size / 2;
 	i = 0;
-	while (i < median)
+	while (i <= median)
 	{
 		if (node->index == target)
 			return (true);
