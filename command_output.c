@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:37:12 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 14:36:29 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,9 @@ int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 
 	command_init(&command);
 	flag->disorder = disorder(a);
-	if (flag->simple == 1)
+	if (flag->simple == 1 || a->size < 20)
 	{
+		flag->simple = 1;
 		simple_sort(a, b, &command);
 		flag->strategy = "simple\n";
 	}
@@ -96,7 +97,7 @@ int	adaptive_select(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 {
 	if (flag->simple == 0 && flag->medium == 0 && flag->complex == 0)
 	{
-		if (flag->disorder < 0.2)
+		if (0 < flag->disorder && flag->disorder < 0.2)
 		{
 			simple_sort(a, b, command);
 			flag->strategy = "Adaptive / O(n2)\n";
@@ -106,7 +107,7 @@ int	adaptive_select(t_stack *a, t_stack *b, t_command *command, t_form *flag)
 			chunk_sort(a, b, command);
 			flag->strategy = "Adaptive / O(n√n)\n";
 		}
-		else
+		else if (0.5 <= flag->disorder)
 		{
 			radix_sort(a, b, command);
 			flag->strategy = "Adaptive / O(nlogn)\n";

@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/23 21:29:02 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:36:37 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 13:43:22 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@ void	simple_sort(t_stack *a, t_stack *b, t_command *command)
 	while (a->size > 0)
 	{
 		while (a->top->index != i)
-			rotate_a(a, command, 1);
+		{
+			if (find_pos(a, i))
+				rotate_a(a, command, 1);
+			else
+				reverse_rotate_a(a, command, 1);
+		}
 		push_b(b, a, command);
 		i++;
 	}
