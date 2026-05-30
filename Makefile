@@ -6,7 +6,7 @@
 #    By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/25 21:08:55 by kkomurat          #+#    #+#              #
-#    Updated: 2026/05/27 23:16:55 by riwatana         ###   ########.fr        #
+#    Updated: 2026/05/30 21:14:09 by riwatana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,8 @@ COMMON = command_push.c \
 		disorder.c \
 		bench_output.c 
 
-
 PS_SRC = main.c \
+
 		
 CK_SRC = get_next_line.c  \
 		get_next_line_utils.c \

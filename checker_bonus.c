@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 22:51:43 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 20:56:11 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 22:31:12 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,51 @@ int	sort_check_bonus(t_stack *a)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+int	write_error_bonus(void)
 {
-	t_stack	heada;
-	t_stack	headb;
+	write(2, "Error\n", 6);
+	return (-1);
+}
+
+int	checker(t_stack *a, t_stack *b)
+{
 	char	*command;
 
-	if (argc <= 1)
-		return (0);
-	stack_init(&headb);
-	if (parse_bonus(&heada, argc, argv) == -1)
-		return (write_error());
 	while (1)
 	{
 		command = get_next_line(0);
 		if (command == NULL)
 			break ;
-		command_dispatch(command, &heada, &headb);
+		if (command_dispatch(command, a, b) == -1)
+		{
+			free(command);
+			return (-1);
+		}
+		free(command);
 	}
-	free(command);
-	if ((sort_check_bonus(&heada) == 1) && headb.size == 0)
+	if ((sort_check_bonus(a) == 1) && b->size == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_stack	heada;
+	t_stack	headb;
+
+	if (argc <= 1)
+		return (0);
+	stack_init(&headb);
+	if (parse_bonus(&heada, argc, argv) == -1)
+		return (write_error_bonus());
+	if (checker(&heada, &headb) == -1)
+	{
+		ps_lstclear(&heada);
+		ps_lstclear(&headb);
+		return (write_error_bonus());
+	}
 	ps_lstclear(&heada);
 	ps_lstclear(&headb);
 	return (0);

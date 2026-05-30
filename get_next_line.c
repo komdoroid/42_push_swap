@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 13:39:33 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/27 23:00:33 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 22:21:20 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_next_line(int fd)
 	ret = 1;
 	while (strline(file.stash) == -1 && ret != 0)
 	{
-		buf = malloc(sizeof(char) * (5));
+		buf = malloc(sizeof(char) * (10));
 		if (buf == NULL)
 			return (gnl_free(&file.stash, &buf, &tmp));
 		ret = read(fd, buf, 5);
