@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 18:28:08 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/30 20:40:51 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	print_stack(t_stack *head, const char *label)
 {
+
 	t_node	*current;
 	int		i;
 
@@ -66,6 +67,9 @@ int	main(int argc, char **argv)
 	if (parse(&heada, &flag, argc, argv) == -1)
 		return (write_error());
 	print_stack(&heada, "BEFORE sort");
+	flag.disorder = disorder(&heada);
+	if (flag.disorder == 0)
+		return (0);
 	if (select_strategy(&heada, &headb, &flag) == -1)
 		return (write_error());
 	print_stack(&heada, "AFTER sort");

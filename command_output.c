@@ -6,7 +6,11 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/24 18:48:41 by riwatana          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/05/30 19:20:41 by riwatana         ###   ########.fr       */
+=======
+/*   Updated: 2026/05/30 19:21:17 by kkomurat         ###   ########.fr       */
+>>>>>>> update_simple
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +75,8 @@ int	select_strategy(t_stack *a, t_stack *b, t_form *flag)
 	t_command	command;
 
 	command_init(&command);
-	flag->disorder = disorder(a);
-	if (flag->simple == 1 || (flag->medium == 0 && flag->complex == 0
-			&& a->size < 20))
+	if (flag->simple == 1)
 	{
-		flag->simple = 1;
 		simple_sort(a, b, &command);
 		flag->strategy = "Simple / O(n2)\n";
 	}
