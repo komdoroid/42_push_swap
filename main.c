@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 22:54:16 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/31 13:12:10 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,15 @@ int	main(int argc, char **argv)
 		return (write_error());
 	flag.disorder = disorder(&heada);
 	if (flag.disorder == 0)
-		return (0);
-	if (select_strategy(&heada, &headb, &flag) == -1)
+	{
+		ps_lstclear(&heada);
 		return (write_error());
+	}
+	if (select_strategy(&heada, &headb, &flag) == -1)
+	{
+		ps_lstclear(&heada);
+		return (write_error());
+	}
 	ps_lstclear(&heada);
-	ps_lstclear(&headb);
 	return (0);
 }

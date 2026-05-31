@@ -6,13 +6,13 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/27 22:51:47 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/30 22:12:13 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/31 13:16:59 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap_bonus.h"
 
-int command_dispatch(char *command, t_stack *a, t_stack *b)
+int	command_dispatch(char *command, t_stack *a, t_stack *b)
 {
 	if (ps_strncmp(command, "sa\n", 3) == 0)
 		swap(a);

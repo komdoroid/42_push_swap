@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/25 22:26:57 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/25 22:28:35 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/31 13:12:17 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,10 @@ int	parse(t_stack *head, t_form *flag, int argc, char **argv)
 	if (pos == -1)
 		return (-1);
 	if ((parse_num(head, argv, argc, pos)) == -1)
+	{
+		ps_lstclear(head);
 		return (-1);
+	}
 	if (check_duplicates(head) == -1)
 	{
 		ps_lstclear(head);
