@@ -6,7 +6,7 @@
 /*   By: riwatana <riwatana@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 19:15:58 by riwatana          #+#    #+#             */
-/*   Updated: 2026/05/31 13:12:10 by riwatana         ###   ########.fr       */
+/*   Updated: 2026/05/31 15:36:35 by riwatana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv)
 	if (flag.disorder == 0)
 	{
 		ps_lstclear(&heada);
-		return (write_error());
+		return (0);
 	}
 	if (select_strategy(&heada, &headb, &flag) == -1)
 	{
